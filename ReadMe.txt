@@ -3,6 +3,9 @@ https://www.youtube.com/playlist?list=PLeyB6O3Us0mQ
 
 TODO:
 1. Скачать и установить MS SQL Server:
+	https://github.com/okovtun/VPU_521_ASP/blob/master/Install
+2. Cкачать и установить SQL Server Management Studio:
+	https://learn.microsoft.com/en-us/ssms/install/install
 
 TODO:
 1. Для каждой задачи в Tasklist-е должно отображаться время добавления в список;
