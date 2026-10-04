@@ -2,12 +2,21 @@
 https://www.youtube.com/playlist?list=PLeyB6O3Us0mQ
 
 TODO:
+1. На MS SQL Server импортировать Базу Данных 'VPU_521_Import';
+2. В Solution 'Blazor' добавить проект 'Academy';
+3. В проекте 'Academy' отобразить следующую информацию из Базы:
+	Направления обучения (Directions);
+	Группы (Groups);
+	Студенты (Students);
+	Преподаватели (Teachers);
+
+DONE:
 1. Скачать и установить MS SQL Server:
 	https://github.com/okovtun/VPU_521_ASP/blob/master/Install
 2. Cкачать и установить SQL Server Management Studio:
 	https://learn.microsoft.com/en-us/ssms/install/install
 
-TODO:
+DONE:
 1. Для каждой задачи в Tasklist-е должно отображаться время добавления в список;
 2. У каждой задачи должна быть кнопка "Удалить";
 3. Добавить кнопку Удалить выполненые;
