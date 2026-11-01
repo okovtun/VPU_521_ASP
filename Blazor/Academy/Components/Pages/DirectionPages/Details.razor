@@ -23,6 +23,9 @@
 		<dl class="row">
 			<dt class="col-sm-2">Количество групп</dt>
 			<dd class="col-sm-10">@direction.Groups.Count</dd>
+			<dt class="col-sm-2">Количество студентов</dt>
+			<dd class="col-sm-10">@studentsCount</dd>
+
 		</dl>
 
 		<div>
@@ -42,26 +45,31 @@
 			<PropertyColumn Sortable="true" Property="group => group.start_time" />
 			<PropertyColumn Sortable="true" Property="group => group.Students.Count" />
 		</QuickGrid>
-    }
+	}
 </div>
 
 @code
 {
-    private Direction? direction;
+	private Direction? direction;
 
-    [SupplyParameterFromQuery]
-    private int direction_id { get; set; }
+	[SupplyParameterFromQuery]
+	private int direction_id { get; set; }
 
-    protected override async Task OnInitializedAsync()
-    {
-        using var context = DbFactory.CreateDbContext();
-        direction = await context.Directions
+	int studentsCount = 0;
+
+	protected override async Task OnInitializedAsync()
+	{
+		using var context = DbFactory.CreateDbContext();
+		direction = await context.Directions
 								.Include(d => d.Groups)
 									.ThenInclude(g => g.Students)
 								.FirstOrDefaultAsync
 								(m => m.direction_id == direction_id);
 
-        if (direction is null)
+		foreach (Group group in direction.Groups)
+			studentsCount += group.Students.Count;
+
+		if (direction is null)
         {
             NavigationManager.NavigateTo("notfound");
         }
