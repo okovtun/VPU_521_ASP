@@ -20,9 +20,19 @@ namespace Academy.Controllers
         }
 
         // GET: Directions
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder)
         {
-            return View(await _context.Directions.ToListAsync());
+			ViewData["NameSortParam"] = sortOrder == "name_desc" ? "name_asc" : "name_desc";
+			IQueryable<Academy.Models.Direction> directions = from d in _context.Directions select d;
+
+			switch (sortOrder)
+			{
+				case "name_asc":	directions = directions.OrderBy(d => d.direction_name); break;
+				case "name_desc":	directions = directions.OrderByDescending(d => d.direction_name); break;
+			}
+
+            return View(directions);
+            //return View(await _context.Directions.ToListAsync());
         }
 
         // GET: Directions/Details/5
